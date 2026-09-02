@@ -9,7 +9,6 @@ for i in $(seq 1 $total); do
     filename="${datetime}_${i}.txt"
     echo "$filename" > /dev/null
     sleep 1
-    # 普通进度条（无颜色）
     percent=$((i * 100 / total))
     filled=$((i * 40 / total))
     bar=$(printf "%${filled}s" | tr ' ' '+')
@@ -19,5 +18,7 @@ for i in $(seq 1 $total); do
            "$bar" "$percent" "$i" "$total" "$filename"
     
 done
-
-echo -e "\n\n✓ All $total files created and committed"
+git add .
+git commit -m "push every day"
+git push
+echo -e "\n\n All $total files created and committed"
