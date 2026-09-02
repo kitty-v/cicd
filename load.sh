@@ -8,12 +8,13 @@ total=31
 for i in $(seq 1 $total); do
     filename="${datetime}_${i}.txt"
     echo "$filename" > /dev/null
+    touch "$filename"
     sleep 1
     percent=$((i * 100 / total))
     filled=$((i * 40 / total))
     bar=$(printf "%${filled}s" | tr ' ' '+')
     space=$((40 - filled))
-    
+        
     printf "\r[%-40s] %3d%% (%d/%d) - %s" \
            "$bar" "$percent" "$i" "$total" "$filename"
     
